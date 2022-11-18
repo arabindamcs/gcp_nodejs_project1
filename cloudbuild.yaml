@@ -16,7 +16,7 @@ steps:
         "beta",
         "run",
         "deploy",
-        "gcp_nodejs_project1",
+        "gcpnodejsproject1",
         "--image=gcr.io/citric-period-368918/gcp_nodejs_project1:$COMMIT_SHA",
         "--region=europe-west1",
       ]

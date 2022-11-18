@@ -1,0 +1,21 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/gcp_nodejs_project1/gcp_nodejs_project1:$COMMIT_SHA",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/gcp_nodejs_project1/gcp_nodejs_project1:$COMMIT_SHA"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "gcp_nodejs_project1",
+        "--image=gcr.io/gcp_nodejs_project1/gcp_nodejs_project1:$COMMIT_SHA",
+        "--region=europe-west1",
+      ]
